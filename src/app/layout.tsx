@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import Header from '@/components/Header';
 
 export const metadata: Metadata = {
   title: 'Cozy Threads',
@@ -13,7 +14,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`antialiased my-6 font-serif`}>{children}</body>
+      <body className={`antialiased my-6 font-serif`}>
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }
