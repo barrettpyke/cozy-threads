@@ -7,7 +7,9 @@ const Header: React.FC = () => {
       <Link className="mx-auto" href="/">
         <h1 className="text-xl">Cozy Threads</h1>
       </Link>
-      <ShoppingBagIcon className="mr-9" />
+      <Link href="/checkout">
+        <ShoppingBagIcon className="mr-9" />
+      </Link>
     </div>
   );
 };
