@@ -14,6 +14,7 @@ export default function Page() {
   const productResponse = getProductById(Number(id));
 
   const [quantity, setQuantity] = useState<number>(1);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const onQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -28,9 +29,14 @@ export default function Page() {
   const { name, description, price } = productResponse;
 
   const onAddToCartClick = () => {
+    setIsLoading(true);
     const product = { ...productResponse, quantity };
 
     addToCart(product);
+
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 800);
   };
 
   return (
@@ -41,7 +47,12 @@ export default function Page() {
         <div>${price}.00</div>
         <div className="max-w-3/4 mt-3">{description}</div>
         <QuantityInput value={quantity} onChange={onQuantityChange} />
-        <Button label="Add to Cart" onClick={onAddToCartClick} className="mt-10" />
+        <Button
+          label="Add to Cart"
+          onClick={onAddToCartClick}
+          isLoading={isLoading}
+          className="mt-10"
+        />
       </div>
     </div>
   );

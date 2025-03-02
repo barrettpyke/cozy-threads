@@ -18,7 +18,7 @@ export const addToCart = (item: CartItem): void => {
   }
 };
 
-export const removeFromCart = (id: number): void => {
+export const removeFromCart = (id: number): Cart => {
   const currentCart = getCartFromStorage();
 
   const existingIndex = currentCart.findIndex((obj) => obj.id === id);
@@ -27,20 +27,20 @@ export const removeFromCart = (id: number): void => {
     currentCart.splice(existingIndex, 1);
     sessionStorage.setItem('cart', JSON.stringify(currentCart));
   }
+
+  return currentCart;
 };
 
 export const getCartFromStorage = (): Cart => {
-  if (window && window.sessionStorage) {
-    const currentCartStr = sessionStorage.getItem('cart');
+  const currentCartStr = sessionStorage.getItem('cart');
 
-    if (currentCartStr) {
-      return JSON.parse(currentCartStr);
-    }
+  if (currentCartStr) {
+    return JSON.parse(currentCartStr);
   }
+
   return [];
 };
 
 export const clearCart = () => {
-  console.log('here');
   sessionStorage.removeItem('cart');
 };

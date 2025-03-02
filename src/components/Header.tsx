@@ -3,8 +3,10 @@ import Link from 'next/link';
 import { ShoppingBagIcon } from './icons';
 import { useState } from 'react';
 import CartModal from './CartModal';
+import { usePathname } from 'next/navigation';
 
 const Header: React.FC = () => {
+  const pathname = usePathname();
   const [showModal, setShowModal] = useState<boolean>(false);
 
   const onShoppingBagClick = () => {
@@ -25,9 +27,11 @@ const Header: React.FC = () => {
         <Link className="mx-auto" href="/">
           <h1 className="text-xl">Cozy Threads</h1>
         </Link>
-        <button onClick={onShoppingBagClick} className="cursor-pointer">
-          <ShoppingBagIcon className="mr-9" />
-        </button>
+        {pathname !== '/checkout' && (
+          <button onClick={onShoppingBagClick} className="cursor-pointer">
+            <ShoppingBagIcon className="mr-9" />
+          </button>
+        )}
       </div>
       {showModal && <CartModal onClose={onCloseModal} />}
     </>

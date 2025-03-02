@@ -1,7 +1,7 @@
-export const ShoppingBagIcon: React.FC<{ className?: string; fill?: string }> = ({
-  className,
-  fill = '#1f1f1f',
-}) => {
+export const ShoppingBagIcon: React.FC<{
+  className?: string;
+  fill?: string;
+}> = ({ className, fill = '#1f1f1f' }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
