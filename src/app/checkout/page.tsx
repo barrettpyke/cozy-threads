@@ -13,7 +13,7 @@ export default function Page() {
   const cart = getCartFromStorage();
 
   useEffect(() => {
-    if (cart) {
+    if (cart.length) {
       fetch('api/create-checkout-session', {
         method: 'POST',
         body: JSON.stringify(cart),
@@ -24,25 +24,27 @@ export default function Page() {
     }
   }, []);
 
-  if (isLoading) {
-    return (
-      <div className="flex justify-center mt-30">
-        <LoadingSpinner width={8} height={8} />
-      </div>
-    );
-  }
+  console.log(cart);
 
-  if (clientSecret) {
-    return (
-      <CheckoutProvider stripe={stripe} options={{ clientSecret }}>
-        <CheckoutForm />
-      </CheckoutProvider>
-    );
-  } else {
+  if (!cart.length) {
     return (
       <div className="flex justify-center">
         Please add something to your cart to checkout!
       </div>
     );
   }
+
+  return (
+    <>
+      {clientSecret && !isLoading ? (
+        <CheckoutProvider stripe={stripe} options={{ clientSecret }}>
+          <CheckoutForm />
+        </CheckoutProvider>
+      ) : (
+        <div className="flex justify-center mt-30">
+          <LoadingSpinner width={5} height={5} />
+        </div>
+      )}
+    </>
+  );
 }

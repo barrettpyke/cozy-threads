@@ -1,3 +1,5 @@
+import { formatCentsToDollars } from '@/helpers/currency';
+
 type CheckoutItemProps = {
   name: string;
   quantity: number;
@@ -14,7 +16,7 @@ const CheckoutItem: React.FC<CheckoutItemProps> = ({
       <div>
         {name} x {quantity}
       </div>
-      <div>${amountSubtotal}.00</div>
+      <div>{formatCentsToDollars(amountSubtotal)}</div>
     </div>
   );
 };

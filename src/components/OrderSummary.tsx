@@ -1,5 +1,6 @@
 import { StripeCheckoutLineItem } from '@stripe/stripe-js';
 import CheckoutItem from './CheckoutItem';
+import { formatCentsToDollars } from '@/helpers/currency';
 
 type OrderSummaryProps = {
   lineItems: StripeCheckoutLineItem[];
@@ -20,7 +21,7 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({ lineItems, total }) => {
       ))}
       <div>
         <div>Total</div>
-        <div className="font-bold">${total}.00</div>
+        <div className="font-bold">{formatCentsToDollars(total)}</div>
       </div>
     </div>
   );

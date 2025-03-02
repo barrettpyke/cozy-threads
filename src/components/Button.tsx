@@ -22,7 +22,7 @@ const Button: React.FC<ButtonProps> = ({
       disabled={disabled}
     >
       <div className="flex justify-center items-center gap-2">
-        {isLoading && <LoadingSpinner />}
+        {isLoading && <LoadingSpinner width={1} height={1} />}
         {label}
       </div>
     </button>

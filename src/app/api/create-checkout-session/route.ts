@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
               id,
             },
           },
-          unit_amount: price,
+          unit_amount: price * 100,
         },
         quantity,
       };
