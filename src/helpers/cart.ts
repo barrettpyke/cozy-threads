@@ -18,13 +18,25 @@ export const addToCart = (item: CartItem): void => {
   }
 };
 
-export const getCartFromStorage = (): Cart => {
-  const currentCartStr = sessionStorage.getItem('cart');
+export const removeFromCart = (id: number): void => {
+  const currentCart = getCartFromStorage();
 
-  if (currentCartStr) {
-    return JSON.parse(currentCartStr);
+  const existingIndex = currentCart.findIndex((obj) => obj.id === id);
+
+  if (existingIndex !== -1) {
+    currentCart.splice(existingIndex, 1);
+    sessionStorage.setItem('cart', JSON.stringify(currentCart));
   }
+};
 
+export const getCartFromStorage = (): Cart => {
+  if (window && window.sessionStorage) {
+    const currentCartStr = sessionStorage.getItem('cart');
+
+    if (currentCartStr) {
+      return JSON.parse(currentCartStr);
+    }
+  }
   return [];
 };
 
