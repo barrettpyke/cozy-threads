@@ -29,5 +29,6 @@ export const getCartFromStorage = (): Cart => {
 };
 
 export const clearCart = () => {
+  console.log('here');
   sessionStorage.removeItem('cart');
 };

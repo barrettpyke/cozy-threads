@@ -33,12 +33,11 @@ const CheckoutForm: React.FC = () => {
     if (!email || error) return;
 
     setIsLoading(true);
+    clearCart();
 
     checkout.confirm().then((result) => {
       if (result.type === 'error') {
         setError(result.error.message);
-      } else {
-        clearCart();
       }
 
       setIsLoading(false);
