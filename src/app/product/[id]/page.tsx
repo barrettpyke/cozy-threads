@@ -34,9 +34,9 @@ export default function Page() {
   };
 
   return (
-    <div className="flex justify-between mx-20 xl:mx-60 gap-10">
-      <ProductImage id={id} name={name} className="max-w-xl max-h-md mb-4" />
-      <div className="flex flex-col my-10 ml-15">
+    <div className="flex flex-col justify-between mx-20 xl:mx-60 gap-10 md:flex-row">
+      <ProductImage id={id} name={name} className="md:max-w-xl md:max-h-md mb-4" />
+      <div className="flex flex-col my-10 md:ml-15">
         <h1 className="text-xl">{name}</h1>
         <div>${price}.00</div>
         <div className="max-w-3/4 mt-3">{description}</div>

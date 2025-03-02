@@ -45,7 +45,10 @@ const CheckoutForm: React.FC = () => {
   };
 
   return (
-    <div className="flex mt-10">
+    <div className="flex flex-col lg:flex-row mt-10">
+      <div className="flex mr-auto ml-auto mb-5 lg:fixed lg:right-10">
+        <OrderSummary lineItems={lineItems} total={total} />
+      </div>
       <div className="mr-auto ml-auto">
         <form>
           <div className="mb-5">
@@ -72,9 +75,6 @@ const CheckoutForm: React.FC = () => {
             className="mt-10 ml-12"
           />
         </form>
-      </div>
-      <div className="flex fixed right-10">
-        <OrderSummary lineItems={lineItems} total={total} />
       </div>
     </div>
   );
