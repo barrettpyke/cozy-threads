@@ -4,7 +4,6 @@ import { StripeCheckoutLineItem } from '@stripe/stripe-js';
 import OrderSummary from './OrderSummary';
 import Button from './Button';
 import { clearCart } from '@/helpers/cart';
-import LoadingSpinner from './LoadingSpinner';
 
 const CheckoutForm: React.FC = () => {
   const checkout = useCheckout();
@@ -22,21 +21,27 @@ const CheckoutForm: React.FC = () => {
     setEmail(e.target.value);
   };
 
-  const onSubmitClick = () => {
+  const onEmailBlur = () => {
     checkout.updateEmail(email).then((result) => {
       if (result.type === 'error') {
         setError(result.error.message);
-        return;
       }
-      setIsLoading(true);
+    });
+  };
 
-      checkout.confirm().then((result) => {
-        if (result.type === 'error') {
-          setError(result.error.message);
-        }
+  const onSubmitClick = () => {
+    if (!email || error) return;
+
+    setIsLoading(true);
+
+    checkout.confirm().then((result) => {
+      if (result.type === 'error') {
+        setError(result.error.message);
+      } else {
         clearCart();
-        setIsLoading(false);
-      });
+      }
+
+      setIsLoading(false);
     });
   };
 
@@ -50,6 +55,7 @@ const CheckoutForm: React.FC = () => {
               type="email"
               value={email}
               onChange={onEmailChange}
+              onBlur={onEmailBlur}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-60  p-2.5"
               placeholder="john@gmail.com"
               required
@@ -59,12 +65,12 @@ const CheckoutForm: React.FC = () => {
             options={{ layout: { type: 'accordion', spacedAccordionItems: true } }}
           />
           {error && <div className="mt-3 text-red-500">{error}</div>}
-          {isLoading && !error && <LoadingSpinner />}
           <Button
             label="Submit Order"
             onClick={onSubmitClick}
+            isLoading={isLoading}
             disabled={isLoading}
-            className="mt-10 ml-15"
+            className="mt-10 ml-12"
           />
         </form>
       </div>
