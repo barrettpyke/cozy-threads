@@ -34,16 +34,18 @@ export const DeleteIcon: React.FC<{ className?: string; fill?: string }> = ({
   );
 };
 
-export const CloseIcon: React.FC<{ className?: string; fill?: string }> = ({
-  className,
-  fill = '#1f1f1f',
-}) => {
+export const CloseIcon: React.FC<{
+  height?: number;
+  width?: number;
+  className?: string;
+  fill?: string;
+}> = ({ height = 24, width = 24, className, fill = '#1f1f1f' }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      height="24px"
+      height={`${height}px`}
       viewBox="0 -960 960 960"
-      width="24px"
+      width={`${width}px`}
       fill={fill}
       className={className}
     >

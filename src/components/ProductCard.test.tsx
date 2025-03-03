@@ -6,7 +6,7 @@ describe('ProductCard', () => {
   it('displays the name and price', () => {
     render(<ProductCard product={FAKE_PRODUCT} />);
     expect(screen.getByText(FAKE_PRODUCT.name)).toBeInTheDocument();
-    expect(screen.getByText(FAKE_PRODUCT.price)).toBeInTheDocument();
+    expect(screen.getByText(`$${FAKE_PRODUCT.price}.00`)).toBeInTheDocument();
   });
 });
 
@@ -14,5 +14,5 @@ const FAKE_PRODUCT: Product = {
   id: 10,
   name: 'Test Item',
   description: 'Heres an item',
-  price: 100,
+  price: 100 * 100,
 };

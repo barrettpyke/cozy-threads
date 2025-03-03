@@ -1,5 +1,5 @@
 import { getCartFromStorage, removeFromCart } from '@/helpers/cart';
-import { CloseIcon, DeleteIcon } from './icons';
+import { CloseIcon } from './icons';
 import Button from './Button';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -32,12 +32,9 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
       {cart.length ? (
         <div className="flex flex-col flex-grow justify-center items-left py-5">
           {cart.map((item) => (
-            <div key={item.id} className="flex justify-between">
+            <div key={item.id} className="flex justify-between items-center">
               <div className="cursor-pointer" onClick={() => onRemoveItem(item.id)}>
-                <DeleteIcon
-                  fill="#cb0000
-"
-                />
+                <CloseIcon height={15} width={15} fill="#808080" />
               </div>
               <div>
                 {item.name} x {item.quantity}

@@ -4,7 +4,7 @@ import { StripeCheckoutLineItem } from '@stripe/stripe-js';
 
 describe('OrderSummary', () => {
   it('displays the lineItems and total', async () => {
-    render(<OrderSummary lineItems={[FAKE_LINE_ITEM]} total={200} />);
+    render(<OrderSummary lineItems={[FAKE_LINE_ITEM]} total={200 * 100} />);
     expect(screen.getByText('Your Order')).toBeInTheDocument();
     expect(screen.getByText('Test Item x 20')).toBeInTheDocument();
     expect(screen.getByText('$200.00')).toBeInTheDocument();
